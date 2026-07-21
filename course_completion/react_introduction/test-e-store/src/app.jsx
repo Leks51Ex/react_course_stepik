@@ -1,3 +1,4 @@
+import React from "react";
 
 const productData = [
   {
@@ -44,37 +45,96 @@ const productData = [
   },
 ];
 
-
 function App() {
-  return <div>
-    <Header/>
-    <Catalog/>
-    <Footer/>
-  </div>;
+  return (
+    <div>
+      <Header />
+      <Catalog />
+      <Footer />
+    </div>
+  );
 }
 
-function Header(){
-  return <header>
-    <h1>Electroinc Store</h1>
-  </header>
+function Header() {
+  const hour = new Date().getHours();
+  const openHours = 9;
+  const closeHours = 21;
+
+  const isOpen = hour >= openHours && hour <= closeHours;
+
+  return (
+    <header>
+      <h1>Electroinc Store</h1>
+      <nav>
+        <ul>
+          <li>
+            Home
+            <a href="#home"></a>
+          </li>
+          <li>
+            Catalog
+            <a href="#catalog"></a>
+          </li>
+          <li>
+            About us
+            <a href="#about"></a>
+          </li>
+          <li>
+            Contacts
+            <a href="#contacts"></a>
+          </li>
+        </ul>
+      </nav>
+      <div>
+        {isOpen ? (
+          <p>
+            We are curently open. Hours: {openHours}:00 - {closeHours}:00
+          </p>
+        ) : (
+          <p>
+            We are curently closed. Hours:{openHours}:00 - {closeHours}:00
+          </p>
+        )}
+      </div>
+    </header>
+  );
 }
 
-function Catalog(){
-  return <main>
-    <ul>
-    <Product/>
-    </ul>
-    
-  </main>
+// function HeaderFromElement() {
+//   return React.createElement(
+//     "header",
+//     null,
+//     React.createElement("h1", null, "Electronic")
+//   );
+// }
+
+function Catalog() {
+  return (
+    <main>
+      <ul>
+        <Product />
+      </ul>
+    </main>
+  );
 }
 
-function Product(){
-  return <li>Product</li>
+function Product() {
+  const products = [...productData];
+
+  return (
+    <li>
+      <img src={products[1].photoName} alt="" />
+      <div>
+        <h3>{products[1].name}</h3>
+        <p>{products[1].description}</p>
+        <span>{products[1].price}</span>
+      </div>
+    </li>
+  );
 }
 
-function Footer(){
+function Footer() {
   return <footer>Footer</footer>;
 }
 
 export default App;
-
