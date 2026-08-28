@@ -113,22 +113,27 @@ function Catalog() {
   return (
     <main className="catalog">
       <ul className="products">
-        <Product />
+        <Product
+          name="Laptop"
+          img="./laptop.png"
+          price="400000"
+          description="Good staff"
+        />
       </ul>
     </main>
   );
 }
 
-function Product() {
-  const products = [...productData];
+function Product(props) {
+  // const products = [...productData];
 
   return (
     <li className="product">
-      <img src={products[1].photoName} alt="" />
+      <img src={props.img} alt="" />
       <div>
-        <h3>{products[1].name}</h3>
-        <p>{products[1].description}</p>
-        <span>{products[1].price}</span>
+        <h3>{props.name}</h3>
+        <p>{props.description}</p>
+        <span>{props.price}</span>
       </div>
     </li>
   );
