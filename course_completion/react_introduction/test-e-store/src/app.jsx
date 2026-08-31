@@ -48,11 +48,11 @@ const productData = [
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
       <Catalog />
       <Footer />
-    </div>
+    </>
   );
 }
 
