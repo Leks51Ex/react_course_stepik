@@ -56,7 +56,8 @@ const cardData = [
   },
   {
     title: "Mindbox",
-    description: "Поддерживаем редизайн платформы автоматизированного маркетинга",
+    description:
+      "Поддерживаем редизайн платформы автоматизированного маркетинга",
     date: "21 сентября 2022",
     imageUrl: "/img-6.jpeg",
     tags: ["#маркетинг", "#редизайн", "#автоматизация"],
@@ -65,5 +66,14 @@ const cardData = [
 ];
 
 export default function CardContainer() {
-  return <div className="card-container"></div>;
+  return (
+    <div className="card-container">
+      <div className="card">
+        <img src="/img-1.jpeg" alt="" />
+        <div className="card-content">
+          <h1 className="card-title">Мокка</h1>
+        </div>
+      </div>
+    </div>
+  );
 }
