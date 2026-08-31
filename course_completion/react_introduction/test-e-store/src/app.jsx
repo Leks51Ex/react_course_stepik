@@ -113,27 +113,22 @@ function Catalog() {
   return (
     <main className="catalog">
       <ul className="products">
-        <Product
-          name="Laptop"
-          img="./laptop.png"
-          price="400000"
-          description="Good staff"
-        />
+        {productData.map((item) => (
+          <Product productObj={item}></Product>
+        ))}
       </ul>
     </main>
   );
 }
 
-function Product(props) {
-  // const products = [...productData];
-
+function Product({ productObj }) {
   return (
     <li className="product">
-      <img src={props.img} alt="" />
+      <img src={productObj.photoName} alt="" />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.description}</p>
-        <span>{props.price}</span>
+        <h3>{productObj.name}</h3>
+        <p>{productObj.description}</p>
+        <span>{productObj.price}</span>
       </div>
     </li>
   );
