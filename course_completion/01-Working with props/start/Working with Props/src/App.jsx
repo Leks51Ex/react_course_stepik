@@ -69,11 +69,24 @@ export default function CardContainer() {
   return (
     <div className="card-container">
       <div className="card">
-        <img src="/img-1.jpeg" alt="" />
+        <img className="card-image" src="/img-1.jpeg" alt="" />
         <div className="card-content">
-          <h1 className="card-title">Мокка</h1>
+          <h2 className="card-title">Мокка</h2>
+          <p className="card-description">
+            Развиваем финтех-продукт для международного рынка
+          </p>
+          <p className="card-date">24 апреля 2024</p>
+          <div className="card-tags">
+            <CardTag tagname="#финтех"></CardTag>
+            <CardTag tagname="#международный"></CardTag>
+            <CardTag tagname="#рынок"></CardTag>
+          </div>
         </div>
       </div>
     </div>
   );
+}
+
+function CardTag(props) {
+  return <span className="card-tag">{props.tagname}</span>;
 }
