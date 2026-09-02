@@ -122,6 +122,8 @@ function Catalog() {
 }
 
 function Product({ productObj }) {
+  if (productObj.soldOut) return null;
+
   return (
     <li className="product">
       <img src={productObj.photoName} alt="" />
