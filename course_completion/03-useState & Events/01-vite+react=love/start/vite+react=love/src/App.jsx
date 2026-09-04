@@ -5,6 +5,16 @@ function App() {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [activeItem, setActiveItem] = useState(null);
+
+  function handleMouseEnter(item) {
+    setActiveItem(item);
+  }
+
+  function handleMouseLeave() {
+    setActiveItem(null);
+  }
+
   // function handleClick() {
   //   alert("hello");
   // }
@@ -29,19 +39,31 @@ function App() {
 
           <div className="logo-container">
             <img
-              className={`logo ${count >= 1 ? "active" : ""}`}
+              onMouseEnter={() => handleMouseEnter("vite")}
+              onMouseLeave={handleMouseLeave}
+              className={`logo ${
+                count >= 1 || activeItem === "vite" ? "active" : ""
+              }`}
               src="/vite.svg"
               alt=""
             />
             <p>+</p>
             <img
-              className={`logo ${count >= 2 ? "active" : ""}`}
+              onMouseEnter={() => handleMouseEnter("react")}
+              onMouseLeave={handleMouseLeave}
+              className={`logo ${
+                count >= 2 || activeItem === "react" ? "active" : ""
+              }`}
               src="/react.svg"
               alt=""
             />
             <p>=</p>
             <img
-              className={`logo ${count >= 3 ? "active" : ""}`}
+              onMouseEnter={() => handleMouseEnter("love")}
+              onMouseLeave={handleMouseLeave}
+              className={`logo ${
+                count >= 3 || activeItem === "love" ? "active" : ""
+              }`}
               src="/love.svg"
               alt=""
             />
