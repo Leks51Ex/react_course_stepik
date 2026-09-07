@@ -129,7 +129,7 @@ export default function App() {
                 onClick={handleNextTab}
                 disabled={activeTab == tabData.length - 1}
               >
-                Nex t &gt;
+                Next &gt;
               </button>
             </div>
 
