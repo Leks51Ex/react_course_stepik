@@ -1,24 +1,55 @@
+import { useState } from "react";
+
 function App() {
+  const [openSection, setOpenSection] = useState({
+    taskList: false,
+    tasks: true,
+    completed: true,
+  });
+
+  function toggleSection(section) {
+    setOpenSection((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  }
+
   return (
     <div className="app">
       <div className="task-container">
         <h1>Task List With Priority</h1>
-        <button className="close-button">+</button>
-        <TaskForm></TaskForm>
+        <button
+          onClick={() => toggleSection("taskList")}
+          className={`close-button ${openSection.taskList ? "open" : ""}`}
+        >
+          +
+        </button>
+        {openSection.taskList && <TaskForm></TaskForm>}
       </div>
       <div className="task-container">
         <h2>Tasks:</h2>
-        <button className="close-button">+</button>
+        <button
+          onClick={() => toggleSection("tasks")}
+          className={`close-button ${openSection.tasks ? "open" : ""}`}
+        >
+          +
+        </button>
+
         <div className="sort-controls">
           <button className="sort-button">By Date</button>
           <button className="sort-button">By Priority</button>
         </div>
-        <TaskList></TaskList>
+        {openSection.tasks && <TaskList></TaskList>}
       </div>
       <div className="completed-task-container">
         <h2>Completed Tasks</h2>
-        <button className="close-button">+</button>
-        <CompletedTaskList></CompletedTaskList>
+        <button
+          onClick={() => toggleSection("completed")}
+          className={`close-button ${openSection.completed ? "open" : ""}`}
+        >
+          +
+        </button>
+        {openSection.completed && <CompletedTaskList></CompletedTaskList>}
       </div>
       <Footer></Footer>
     </div>
