@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function App() {
+  const [tasks, setTasks] = useState([]);
   const [openSection, setOpenSection] = useState({
     taskList: false,
     tasks: true,
@@ -14,6 +15,12 @@ function App() {
     }));
   }
 
+  function addTask(task) {
+    setTasks([...tasks, { ...task, completed: false, id: Date.now() }]);
+  }
+
+  console.log(tasks);
+
   return (
     <div className="app">
       <div className="task-container">
@@ -24,7 +31,7 @@ function App() {
         >
           +
         </button>
-        {openSection.taskList && <TaskForm></TaskForm>}
+        {openSection.taskList && <TaskForm addTask={addTask}></TaskForm>}
       </div>
       <div className="task-container">
         <h2>Tasks:</h2>
@@ -58,16 +65,41 @@ function App() {
 
 export default App;
 
-function TaskForm() {
+function TaskForm({ addTask }) {
+  const [title, setTitle] = useState("");
+  const [priorioty, setPriority] = useState("Low");
+  const [deadline, setDeadline] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (title.trim()) {
+      addTask({ title, priorioty, deadline });
+      setTitle("");
+      setPriority("Low");
+      setDeadline("");
+    }
+  }
+
   return (
-    <form className="task-form" action="">
-      <input type="text" value={""} placeholder="Task title" required />
-      <select value={""}>
+    <form className="task-form" action="" onSubmit={handleSubmit}>
+      <input
+        onChange={(e) => setTitle(e.target.value)}
+        type="text"
+        value={title}
+        placeholder="Task title"
+        required
+      />
+      <select onChange={(e) => setPriority(e.target.value)} value={priorioty}>
         <option value="High">High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
       </select>
-      <input type="datetime-local" required value={""} />
+      <input
+        onChange={(e) => setDeadline(e.target.value)}
+        type="datetime-local"
+        value={deadline}
+      />
       <button type="submit">Add task</button>
     </form>
   );
