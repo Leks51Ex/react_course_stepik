@@ -19,7 +19,9 @@ function App() {
     setTasks([...tasks, { ...task, completed: false, id: Date.now() }]);
   }
 
-  console.log(tasks);
+  const activeTasks = tasks.filter((task) => !task.completed);
+
+  const completedTasks = tasks.filter((task) => task.completed);
 
   return (
     <div className="app">
@@ -46,7 +48,7 @@ function App() {
           <button className="sort-button">By Date</button>
           <button className="sort-button">By Priority</button>
         </div>
-        {openSection.tasks && <TaskList></TaskList>}
+        {openSection.tasks && <TaskList activeTasks={activeTasks}></TaskList>}
       </div>
       <div className="completed-task-container">
         <h2>Completed Tasks</h2>
@@ -67,14 +69,14 @@ export default App;
 
 function TaskForm({ addTask }) {
   const [title, setTitle] = useState("");
-  const [priorioty, setPriority] = useState("Low");
+  const [priority, setPriority] = useState("Low");
   const [deadline, setDeadline] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if (title.trim()) {
-      addTask({ title, priorioty, deadline });
+      addTask({ title, priority: priority, deadline });
       setTitle("");
       setPriority("Low");
       setDeadline("");
@@ -90,7 +92,7 @@ function TaskForm({ addTask }) {
         placeholder="Task title"
         required
       />
-      <select onChange={(e) => setPriority(e.target.value)} value={priorioty}>
+      <select onChange={(e) => setPriority(e.target.value)} value={priority}>
         <option value="High">High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
@@ -105,22 +107,26 @@ function TaskForm({ addTask }) {
   );
 }
 
-function TaskList() {
+function TaskList({ activeTasks }) {
   return (
     <ul className="task-list">
-      <TaskItem />
+      {activeTasks.map((task) => (
+        <TaskItem task={task} key={task.id} />
+      ))}
     </ul>
   );
 }
 
-function TaskItem() {
+function TaskItem({ task }) {
+  const { title, priority, deadline, id } = task;
+
   return (
-    <li className="task-item high">
+    <li className={`task-item ${priority.toLowerCase()}`}>
       <div className="task-info">
         <div>
-          Title <strong>Medium</strong>
+          {title} <strong>{priority}</strong>
         </div>
-        <div className="tasl-deadline">Due: {new Date().toLocaleString()}</div>
+        <div className="tasl-deadline">Due: {Date(deadline)}</div>
       </div>
       <div className="task-buttons">
         <button className="complete-button">Complete</button>
@@ -131,11 +137,7 @@ function TaskItem() {
 }
 
 function CompletedTaskList() {
-  return (
-    <ul className="completed-task-list">
-      <TaskItem></TaskItem>
-    </ul>
-  );
+  return <ul className="completed-task-list">{/* <TaskItem></TaskItem> */}</ul>;
 }
 
 function Footer() {
