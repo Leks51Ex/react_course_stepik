@@ -19,6 +19,8 @@ function App() {
     setTasks([...tasks, { ...task, completed: false, id: Date.now() }]);
   }
 
+  function deleteTask({ id }) {}
+
   const activeTasks = tasks.filter((task) => !task.completed);
 
   const completedTasks = tasks.filter((task) => task.completed);
@@ -130,7 +132,9 @@ function TaskItem({ task }) {
       </div>
       <div className="task-buttons">
         <button className="complete-button">Complete</button>
-        <button className="delete-button">Delete</button>
+        <button onClick={() => deleteTask(id)} className="delete-button">
+          Delete
+        </button>
       </div>
     </li>
   );
