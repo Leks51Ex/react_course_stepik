@@ -1,10 +1,21 @@
+import Button from "./Button";
+
 export default function Main() {
   return (
     <main className="component-showcase">
       <section className="component-group">
         <h2>Variants</h2>
         <div className="component-card">
-          <button className="button primary">Primary</button>
+          <Button
+            varian="secondary"
+            text="hello"
+            size="large"
+            isDisabled
+            fullWith
+          />
+          <Button varian="primary" text="hello" isDisabled fullWith />
+          <Button varian="primary" size="small" isDisabled fullWith />
+
           <button className="button secondary">Secondary</button>
           <button className="button danger">Danger</button>
           <button className="button gradient">Gradient</button>
