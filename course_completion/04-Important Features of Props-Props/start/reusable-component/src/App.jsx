@@ -12,6 +12,10 @@ function App() {
     setShowInstructions((prev) => !prev);
   };
 
+  function handleClick() {
+    alert("click");
+  }
+
   return (
     <div className="app">
       <Header
@@ -19,7 +23,7 @@ function App() {
         toggleInstructions={toggleInstructions}
       />
       <Instructions showInstructions={showInstructions} />
-      <Main />
+      <Main handleClick={handleClick} />
 
       <Footer />
     </div>

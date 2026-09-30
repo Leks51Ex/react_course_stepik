@@ -1,20 +1,23 @@
 import Button from "./Button";
 
-export default function Main() {
+export default function Main({ handleClick }) {
   return (
     <main className="component-showcase">
       <section className="component-group">
         <h2>Variants</h2>
         <div className="component-card">
           <Button
+            onClick={handleClick}
             varian="secondary"
             text="hello"
             size="large"
-            isDisabled
             fullWith
           />
-          <Button varian="primary" text="hello" isDisabled fullWith />
+          {/* <Button varian="primary" text="hello" isDisabled fullWith />
           <Button varian="primary" size="small" isDisabled fullWith />
+          <Button>
+            <h1>Hey</h1>
+          </Button> */}
 
           <button className="button secondary">Secondary</button>
           <button className="button danger">Danger</button>

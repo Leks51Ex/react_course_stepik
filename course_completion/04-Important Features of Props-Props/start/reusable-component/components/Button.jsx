@@ -8,6 +8,7 @@ export default function Button({
   fullWith = false,
   isDisabled = false,
   onClick,
+  children,
 }) {
   return (
     <button
@@ -18,20 +19,18 @@ export default function Button({
     >
       {icon ? <span>{icon}</span> : ""}
       {text}
+      {children}
     </button>
   );
 }
 
-Button.propTypes = {
-  text: PropTypes.string,
-  icon: PropTypes.string,
-  size: PropTypes.oneOf(["large", "medium", "small"]),
-  varian: PropTypes.oneOf(["primary", "secondary"]),
-  fullWith: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  onClick: PropTypes.func,
-};
-
-Button.defaultProps = {
-  text: "Some text",
-};
+// Button.propTypes = {
+//   text: PropTypes.string,
+//   icon: PropTypes.string,
+//   size: PropTypes.oneOf(["large", "medium", "small"]),
+//   varian: PropTypes.oneOf(["primary", "secondary"]),
+//   fullWith: PropTypes.bool,
+//   isDisabled: PropTypes.bool,
+//   onClick: PropTypes.func,
+//   children: PropTypes.any,
+// };

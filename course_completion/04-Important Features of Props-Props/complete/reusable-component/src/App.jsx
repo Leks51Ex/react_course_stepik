@@ -20,7 +20,10 @@ function App() {
 
   return (
     <div className="app">
-      <Header showInstructions={showInstructions} toggleInstructions={toggleInstructions} />
+      <Header
+        showInstructions={showInstructions}
+        toggleInstructions={toggleInstructions}
+      />
       <Instruction showInstructions={showInstructions} />
       <Main>
         <Section title="Variants">
