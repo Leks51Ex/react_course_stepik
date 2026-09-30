@@ -6,6 +6,7 @@ import Instructions from "../components/Instructions";
 import Main from "../components/Main";
 import Section from "../components/Section";
 import Button from "../components/Button";
+import ExplicitComp from "../components/ExplicitComp";
 
 function App() {
   const [showInstructions, setShowInstructions] = useState(false);
@@ -42,6 +43,10 @@ function App() {
         <Section title={"Click"}>
           <Button text={"clicked"} onClick={handleClick}></Button>
         </Section>
+        <ExplicitComp
+          title={<h1>Explicit props</h1>}
+          button={<Button text={"Explicit"}></Button>}
+        ></ExplicitComp>
       </Main>
 
       <Footer />
