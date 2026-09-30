@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Instructions from "../components/Instructions";
 import Main from "../components/Main";
+import Section from "../components/Section";
+import Button from "../components/Button";
 
 function App() {
   const [showInstructions, setShowInstructions] = useState(false);
@@ -23,7 +25,24 @@ function App() {
         toggleInstructions={toggleInstructions}
       />
       <Instructions showInstructions={showInstructions} />
-      <Main handleClick={handleClick} />
+      <Main>
+        <Section title={"Size"}>
+          <Button text="small" size={"small"}></Button>
+          <Button size={"large"} text={"large"}></Button>
+          <Button text={"medium"} size={"medium"}></Button>
+        </Section>
+        <Section title={"Variant"}>
+          <Button varian="primary" text={"primary"}></Button>
+          <Button varian="secondary" text={"secondary"}></Button>
+        </Section>
+        <Section title={"Active"}>
+          <Button text={"Active"}></Button>
+          <Button text={"Disabled"} isDisabled></Button>
+        </Section>
+        <Section title={"Click"}>
+          <Button text={"clicked"} onClick={handleClick}></Button>
+        </Section>
+      </Main>
 
       <Footer />
     </div>
