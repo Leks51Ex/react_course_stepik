@@ -80,7 +80,7 @@ function App() {
         <Modal
           title="Confirm your chose"
           subtitle="Are you sure about?"
-          isModalOpen={closeModal}
+          isModalOpen={!isModalOpen}
         >
           <Button click={closeModal} variant={"closeButton"}>
             &times;
